@@ -86,7 +86,7 @@ export default () => {
         </div>
 
         <div className="form-group">
-          <button type="submit" className="post-job-btn b-0 px-3 primary-color">
+          <button type="submit" className="post-job-btn b-0 px-3 primary">
             Submit
           </button>
         </div>

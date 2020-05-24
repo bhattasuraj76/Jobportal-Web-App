@@ -122,7 +122,6 @@ class PostNewJob extends Component {
                     {item.title}
                   </option>
                 ))}
-
               </select>
             </div>
 
@@ -133,13 +132,12 @@ class PostNewJob extends Component {
                 onChange={this.onChange}
               >
                 <option value="">Select Job Type</option>
-                
+
                 {DEFAULT_JOB_TYPES.map((item, index) => (
                   <option name="level[]" value={item.value} key={index}>
                     {item.title}
                   </option>
                 ))}
-
               </select>
             </div>
 
@@ -228,7 +226,7 @@ class PostNewJob extends Component {
             <div className="form-group">
               <button
                 type="submit"
-                className="post-job-btn b-0 px-3 primary-color"
+                className="post-job-btn b-0 px-3 primary"
               >
                 Post job
               </button>

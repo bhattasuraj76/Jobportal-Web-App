@@ -37,79 +37,79 @@ class SingleJob extends Component {
         >
           <div className="view-singlejob">
             <div className="row mx-0">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">Job Title :</label>
-                  <div className="col-md-8 pt-2">{job.title}</div>
+                  <label className="col-lg-4 col-form-label">Job Title :</label>
+                  <div className="col-lg-8 pt-2">{job.title}</div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">Category :</label>
-                  <div className="col-md-8 pt-2"> {job.category}</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row mx-0">
-              <div className="col-md-6">
-                <div className="form-group row">
-                  <label className="col-md-4 col-form-label">Job Type :</label>
-                  <div className="col-md-8 pt-2">{job.type}</div>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group row">
-                  <label className="col-md-4 col-form-label">Job Level :</label>
-                  <div className="col-md-8 pt-2">{job.level}</div>
+                  <label className="col-lg-4 col-form-label">Category :</label>
+                  <div className="col-lg-8 pt-2"> {job.category}</div>
                 </div>
               </div>
             </div>
 
             <div className="row mx-0">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">
+                  <label className="col-lg-4 col-form-label">Job Type :</label>
+                  <div className="col-lg-8 pt-2">{job.type}</div>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="form-group row">
+                  <label className="col-lg-4 col-form-label">Job Level :</label>
+                  <div className="col-lg-8 pt-2">{job.level}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row mx-0">
+              <div className="col-lg-6">
+                <div className="form-group row">
+                  <label className="col-lg-4 col-form-label">
                     Experience :
                   </label>
-                  <div className="col-md-8 pt-2">{job.experience}</div>
+                  <div className="col-lg-8 pt-2">{job.experience}</div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">
-                    Qualification :
+                  <label className="col-lg-4 col-form-label">
+                    Qualification:
                   </label>
-                  <div className="col-md-8 pt-2">{job.qualification}</div>
+                  <div className="col-lg-8 pt-2">{job.qualification}</div>
                 </div>
               </div>
             </div>
 
             <div className="row mx-0">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">
-                    Salary (NPR) :
+                  <label className="col-lg-4 col-form-label">
+                    Salary :
                   </label>
-                  <div className="col-md-8 pt-2">{job.salary}</div>
+                  <div className="col-lg-8 pt-2">{job.salary}</div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="form-group row">
-                  <label className="col-md-4 col-form-label">
+                  <label className="col-lg-4 col-form-label">
                     Expiry date :
                   </label>
-                  <div className="col-md-8 pt-2">{job.expiry_date}</div>
+                  <div className="col-lg-8 pt-2">{job.expiry_date}</div>
                 </div>
               </div>
             </div>
 
             <div className="form-group row mx-0">
-              <label className="col-md-4 col-form-label">
+              <label className="col-lg-4 col-form-label">
                 Job Description :
               </label>
               <div
-                className="offset-md-2 col-md-10"
+                className="offset-lg-2 col-lg-10"
                 dangerouslySetInnerHTML={{ __html: job.description }}
               ></div>
             </div>

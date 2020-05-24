@@ -55,19 +55,19 @@ function Navbar({ history, match, location }) {
   };
 
   return (
-    <section className="seconday-navabar top-bar">
+    <section className="Navbar top-sticky">
       <div className="Container">
-        <div className="row no-gutters justify-content-between pr-md-3 mr-3 mr-md-0">
-          <div className="col-6 col-md-3">
-            <div className="logo-box float-left">
+        <div className="row justify-content-between mx-0">
+          <div className="col-6 col-lg-3">
+            <div className="Navbar__logo-box">
               <Link to="/">
-                <img className="card-img-top" src={Logo} alt="Card" />
+                <img src={Logo} alt="Logo" />
               </Link>
             </div>
           </div>
-          <div className="col-6 col-md-4">
+          <div className="col-6 col-lg-4">
             {/* desktop menu */}
-            <div className="desktop-menu-wrapper d-none d-md-block">
+            <div className="desktop-menu-wrapper d-none d-lg-block">
               {isAuthenticated ? (
                 <div>
                   {isAuthRoute ? (
@@ -139,7 +139,7 @@ function Navbar({ history, match, location }) {
             {/* desktop menu end*/}
 
             {/* mobile menu start*/}
-            <div className="mobile-menu-wrapper jobseeker-name text-right d-block d-md-none ">
+            <div className="mobile-menu-wrapper text-right d-block d-lg-none ">
               <div className="mobile-menu">
                 <div onClick={toggleDropdownMenu}>
                   <i className="fas fa-bars"></i>

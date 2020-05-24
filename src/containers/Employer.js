@@ -19,13 +19,11 @@ class Employer extends Component {
     logo: "",
   };
 
-  changeLogoAndCover = (logo, cover) => {
-    this.setState({
-        logo, cover
-    })
+  componentDidMount() {
+    this.fetchData();
   }
 
-  componentDidMount() {
+  fetchData = () => {
     axios
       .get(apiPath + "/employer")
       .then((response) => {
@@ -38,17 +36,24 @@ class Employer extends Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+
+  changeLogoAndCover = (logo, cover) => {
+    this.setState({
+      logo,
+      cover,
+    });
+  };
 
   render() {
     return (
       <div>
-        <BannerEmployer  cover={this.state.cover} logo={this.state.logo}/>
+        <BannerEmployer cover={this.state.cover} logo={this.state.logo} />
 
         <section className="company-content-wrapper ">
           <div className="Container">
             <div className="row no-gutters justify-content-between">
-              <div className="col-md-3">
+              <div className="col-lg-3">
                 <div className="profile-pic" id="profilePic">
                   <div className="jobseeker-nav-pill">
                     <NavLink to={`${this.props.match.url}`} exact>
@@ -77,12 +82,13 @@ class Employer extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-9">
+              <div className="col-lg-9">
                 <Switch>
                   <Route path={`${this.props.match.path}`} exact>
                     <EmployerLanding
                       totalApplicants={this.state.total_applicants}
                       totalJobsPosted={this.state.total_jobs_posted}
+                      fetchData={this.fetchData}
                     />
                   </Route>
                   <Route path={`${this.props.match.path}/edit-profile`}>

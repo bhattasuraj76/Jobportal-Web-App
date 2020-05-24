@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Loader from "./Loader";
+import { apiPath } from "../utils/Consts";
 
 class ViewJobApplicant extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class ViewJobApplicant extends Component {
 
   componentDidMount() {
     if (this.state.isLoading) {
-      const apiPath = process.env.REACT_APP_API_URL;
 
       axios
         .get(apiPath + "/employer/view-job-applicants")

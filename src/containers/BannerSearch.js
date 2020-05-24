@@ -7,10 +7,10 @@ export default ({ keyword, onChangeKeyword, onBannerFormSubmit }) => {
       className="bg-default-img img-fluid"
       style={{ backgroundImage: `url(${Banner})` }}
     >
-      <div className="container">
+      <div className="container search-box">
         <div className="row justify-content-center">
-          <div className="col-md-8 my-auto">
-            <div className="py-4 py-md-5">
+          <div className="col-lg-8 my-auto">
+            <div className="py-4 py-lg-5">
               <form
                 action="/search"
                 className="p-2"

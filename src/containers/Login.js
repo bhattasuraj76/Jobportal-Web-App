@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { apiPath } from "../utils/Consts";
-
+import SignupHeader from "./SignupHeader";
 /** Presentation */
 import ErrorMessage from "../components/ErrorMessage";
 /** Custom Hooks */
@@ -10,6 +10,7 @@ import useErrorHandler from "../utils/custom-hooks/ErrorHandler";
 import { AuthContext } from "../contexts/AuthContext";
 /** Utils */
 import { apiRequest, validateLoginForm, printError, removeError } from "../utils/Helpers";
+
 
 const Login = (props) => {
   const authContext = React.useContext(AuthContext);
@@ -52,39 +53,14 @@ const Login = (props) => {
 
   return (
     <div className="login-container">
+      <div className="content-wrapper border mt-5">
+        <SignupHeader
+          action="Login"
+          isUserEntityJobseeker={isUserEntityJobseeker}
+          setUserEntity={setUserEntity}
+        />
 
-      <div className="content-wrapper mb-5 border">
-        <div className="form-top mb-4 pt-4">
-          <div className="content-box text-center" id="seeker-box">
-            <h4>
-              I am{" "}
-              <span className="main-text">
-                {isUserEntityJobseeker ? "Jobseeker" : "Employer"}
-              </span>
-            </h4>
-          </div>
-
-          <div className="content-box d-flex mt-4">
-            <div
-              className={`seeker login-as text-center ${
-                isUserEntityJobseeker ? "active" : null
-              } `}
-              onClick={(e) => setUserEntity("jobseeker")}
-            >
-              Login as Jobseeker
-            </div>
-            <div
-              className={`employer login-as text-center ${
-                !isUserEntityJobseeker ? "active" : null
-              } `}
-              onClick={(e) => setUserEntity("employer")}
-            >
-              Login as Employer
-            </div>
-          </div>
-        </div>
-
-        <div className="login-form mb-4">
+        <div className="login-form">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -118,7 +94,7 @@ const Login = (props) => {
 
             <div className="form-submit text-center mt-30 mb-3">
               <button
-                className="primary-color border submit"
+                className="primary submit"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Submit"}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import SingleJob from "./ViewSingleJob";
 import { confirmDelete } from "../utils/Helpers";
+import { apiPath } from "../utils/Consts";
 import Loader from "./Loader";
 
 class ViewJobPosted extends Component {
@@ -15,7 +16,6 @@ class ViewJobPosted extends Component {
 
   componentDidMount() {
     if (this.state.isLoading) {
-      const apiPath = process.env.REACT_APP_API_URL;
 
       axios
         .get(apiPath + "/employer/view-posted-jobs")
@@ -34,7 +34,6 @@ class ViewJobPosted extends Component {
   deleteJob = (id) => {
     let confirm = confirmDelete();
     if(confirm){
-    const apiPath = process.env.REACT_APP_API_URL;
 
     axios
       .delete(`${apiPath}/employer/delete-job/${id}`)

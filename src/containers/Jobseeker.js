@@ -41,7 +41,7 @@ class Jobseeker extends Component {
         <section className="company-content-wrapper ">
           <div className="Container">
             <div className="row no-gutters justify-content-between">
-              <div className="col-md-3">
+              <div className="col-lg-3">
                 <div className="profile-pic" id="profilePic">
                     <ProfileImg src={
                       this.state.profile ? this.state.profile : JobseekerProfile
@@ -61,7 +61,7 @@ class Jobseeker extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-9">
+              <div className="col-lg-9">
                 <Switch>
                   <Route path={`${this.props.match.path}`} exact>
                     <ViewAppliedJobs jobs={this.state.jobs}/>

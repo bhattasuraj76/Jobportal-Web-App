@@ -18,13 +18,12 @@ import Jobseeker from "./Jobseeker";
 import Search from "./Search";
 import JobPage from "./JobPage";
 import Navbar from "./Navbar";
+import NotFound from "../components/NotFound";
 
 function RootContainer() {
+  // Add a request interceptor if authenticated
   const { auth } = React.useContext(AuthContext);
-
-  console.log(auth.token);
   if (!!auth.email && !!auth.token) {
-    // Add a request interceptor
     axios.interceptors.request.use(function (config) {
       config.headers.Authorization = auth.token;
       return config;
@@ -53,9 +52,14 @@ function RootContainer() {
 
           <Route path="/home" render={() => <Redirect to="/" />} />
 
-          <PrivateRoute path="/register" component={Register} type="guest" />
+          <PrivateRoute
+            path="/register"
+            component={Register}
+            type="guest"
+            exact
+          />
 
-          <PrivateRoute path="/login" component={Login} type="guest" />
+          <PrivateRoute path="/login" component={Login} type="guest" exact />
 
           <PrivateRoute path="/employer" component={Employer} type="employer" />
 
@@ -64,6 +68,8 @@ function RootContainer() {
             component={Jobseeker}
             type="jobseeker"
           />
+
+          <Route path="*" component={NotFound} />
         </Switch>
       </div>
     </Router>

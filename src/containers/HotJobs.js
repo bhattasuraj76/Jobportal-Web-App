@@ -1,5 +1,5 @@
 import * as React from "react";
-import JobBox from "./JobBox";
+import JobBox from "./JobBoxSm";
 
 export default ({ jobs }) => {
   return (
@@ -15,7 +15,7 @@ export default ({ jobs }) => {
           <div className="hot-jobs-container">
             <div className="row mx-0">
               {jobs.map((item, index) => {
-                return <JobBox key={index} job={item} classValue="col-md-4" />;
+                return <JobBox key={index} job={item} classValue="col-12 col-sm-6 col-lg-4" />;
               })}
             </div>
           </div>

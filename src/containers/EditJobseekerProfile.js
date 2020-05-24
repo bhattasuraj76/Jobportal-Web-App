@@ -61,7 +61,7 @@ class EditJobseekerProfile extends Component {
       .then((response) => {
         if (response.data.resp === 1) {
           //show success message
-          alert("Successfuly job posted");
+          alert("Successfuly edited profile");
 
           //update profile and cover
           const { profile, cover } = response.data.user;
@@ -149,7 +149,7 @@ class EditJobseekerProfile extends Component {
           id="edit-jobseeker"
         >
           <div className="row my-30">
-            <div className="col-md-6">
+            <div className="col-lg-6">
               <input
                 type="text"
                 name="first_name"
@@ -159,7 +159,7 @@ class EditJobseekerProfile extends Component {
                 onChange={this.onChange}
               />
             </div>
-            <div className="col-md-6 mt-4 mt-md-0">
+            <div className="col-lg-6 mt-4 mt-lg-0">
               <input
                 type="text"
                 name="last_name"
@@ -172,7 +172,7 @@ class EditJobseekerProfile extends Component {
           </div>
 
           <div className="row my-30">
-            <div className="col-md-6">
+            <div className="col-lg-6">
               <input
                 type="text"
                 name="phone"
@@ -182,9 +182,9 @@ class EditJobseekerProfile extends Component {
                 onChange={this.onChange}
               />
             </div>
-            <div className="col-md-6 mt-4 mt-md-0">
-              <div className="row no-gutters mt-md-2">
-                <label className="radio-wrapper col-3  ml-5  ml-md-4">
+            <div className="col-lg-6 mt-4 mt-lg-0">
+              <div className="row no-gutters mt-lg-2">
+                <label className="radio-wrapper col-3  ml-5  ml-lg-4">
                   <input
                     type="radio"
                     checked="checked"
@@ -259,7 +259,7 @@ class EditJobseekerProfile extends Component {
           <div className="form-submit mt-30 mb-3">
             <button
               type="submit"
-              className="post-job-btn b-0 px-3 primary-color"
+              className="post-job-btn b-0 px-3 primary"
             >
               Edit profile
             </button>

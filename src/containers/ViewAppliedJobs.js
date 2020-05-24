@@ -35,7 +35,7 @@ class ViewAppliedJobs extends Component {
               })
             ) : (
               <tr>
-                <td colSpan="5">No jobs posted yet</td>
+                <td colSpan="5">No applied jobs yet</td>
               </tr>
             )}
           </tbody>

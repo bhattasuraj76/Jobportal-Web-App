@@ -95,7 +95,7 @@ class JobPage extends Component {
           <div>
             <BannerEmployer cover={employer.cover} logo={employer.logo} />
             <div className="row justify-content-around job-page-wrapper mb-5 mx-0">
-              <div className="col-md-3">
+              <div className="col-lg-3">
                 <div className="employer-detail-box">
                   <h5 className="mb-3 mr-5">Company Details</h5>
                   <ul>
@@ -115,7 +115,7 @@ class JobPage extends Component {
                 </div>
               </div>
 
-              <div className="col-md-8">
+              <div className="col-lg-8">
                 <div className="job-info-container">
                   <h5>Basic Job Information</h5>
                   <ul>
@@ -155,7 +155,7 @@ class JobPage extends Component {
                   {!(auth.entity === "employer") && (
                     <button
                       type="submit"
-                      className="post-job-btn b-0 px-3 primary-color"
+                      className="post-job-btn b-0 px-3 primary"
                       onClick={this.applyForJob}
                     >
                       Apply for Job

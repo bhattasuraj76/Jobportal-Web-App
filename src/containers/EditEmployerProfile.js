@@ -56,7 +56,7 @@ class EditCompanyProfile extends Component {
       .then((response) => {
         if (response.data.resp === 1) {
           //show success message
-          alert("Successfuly job posted");
+          alert("Successfuly edited profile");
 
           //uodate context values
           const { setAuthStatus } = this.context;
@@ -207,7 +207,7 @@ class EditCompanyProfile extends Component {
           <div className="form-submit mt-30 mb-3">
             <button
               type="submit"
-              className="post-job-btn b-0 px-3 primary-color"
+              className="post-job-btn b-0 px-3 primary"
             >
               Edit profile
             </button>

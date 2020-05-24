@@ -34,25 +34,25 @@ function SecondayNavbar(props) {
   return (
     <section className="seconday-navabar top-bar">
       <div className="Container">
-        <div className="row no-gutters justify-content-between pr-md-3 mr-3 mr-md-0">
-          <div className="col-6 col-md-3">
+        <div className="row no-gutters justify-content-between pr-lg-3 mr-3 mr-lg-0">
+          <div className="col-6 col-lg-3">
             <div className="logo-box float-left">
               <Link to="/">
                 <img className="card-img-top" src={Logo} alt="Card" />
               </Link>
             </div>
           </div>
-          <div className="col-6 col-md-4">
+          <div className="col-6 col-lg-4">
             <div className="jobseeker-name text-right">
               {/* if hasDropdownMenu is true which is for employer and jobseeker routes */}
               {props.hasDropdownMenu === "true" ? (
                 <div>
-                  <div className="d-block d-md-none mobile-menu">
+                  <div className="d-block d-lg-none mobile-menu">
                     <div onClick={toggleDropdownMenu}>
                       <i className="fas fa-bars"></i>
                     </div>
                   </div>
-                  <div className="d-none d-md-block">
+                  <div className="d-none d-lg-block">
                     <div className="menu-dropdown" onClick={toggleDropdownMenu}>
                       Hello,{" "}
                       <i style={{ fontSize: "18px", color: "#1771c4" }}>
@@ -79,12 +79,12 @@ function SecondayNavbar(props) {
                 </div>
               ) : (
                 <div>
-                  <div className="d-block d-md-none mobile-menu">
+                  <div className="d-block d-lg-none mobile-menu">
                     <div>
                       <i className="fas fa-bars"></i>
                     </div>
                   </div>
-                  <div className="d-none d-md-block">
+                  <div className="d-none d-lg-block">
                     <div className="guest-highlight">Hello, Guest</div>
                   </div>
                 </div>

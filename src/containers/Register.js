@@ -13,6 +13,7 @@ import {
   printError,
   removeError,
 } from "../utils/Helpers";
+import SignupHeader from "./SignupHeader";
 
 const Register = (props) => {
   const [userFirstName, setFirstName] = React.useState("");
@@ -24,7 +25,7 @@ const Register = (props) => {
   const [userEntity, setUserEntity] = React.useState("jobseeker");
   const [loading, setLoading] = React.useState(false);
   const { error, showError } = useErrorHandler(null);
-  const isUserEntityJobseeker = userEntity === "jobseeker" ? true : false;
+  const isUserEntityJobseeker = (userEntity === "jobseeker") ? true : false;
 
   const registerHandler = async () => {
     try {
@@ -64,38 +65,14 @@ const Register = (props) => {
 
   return (
     <div className="login-container">
-      <div className="content-wrapper mb-5 border">
-        <div className="form-top mb-4 pt-4">
-          <div className="content-box text-center" id="seeker-box">
-            <h4>
-              I am{" "}
-              <span className="main-text">
-                {isUserEntityJobseeker ? "Jobseeker" : "Employer"}
-              </span>
-            </h4>
-          </div>
+      <div className="content-wrapper border mt-5">
+        <SignupHeader
+          action="Register"
+          isUserEntityJobseeker={isUserEntityJobseeker}
+          setUserEntity={setUserEntity}
+        />
 
-          <div className="content-box d-flex mt-4">
-            <div
-              className={`seeker login-as text-center ${
-                isUserEntityJobseeker ? "active" : null
-              } `}
-              onClick={(e) => setUserEntity("jobseeker")}
-            >
-              Register as Jobseeker
-            </div>
-            <div
-              className={`employer login-as text-center ${
-                !isUserEntityJobseeker ? "active" : null
-              } `}
-              onClick={(e) => setUserEntity("employer")}
-            >
-              Register as Employer
-            </div>
-          </div>
-        </div>
-
-        <div className="login-form mb-4">
+        <div className="login-form">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -114,9 +91,9 @@ const Register = (props) => {
             {error && <ErrorMessage errorMessage={error} />}
 
             {isUserEntityJobseeker ? (
-              <div className="row my-30 mx-0">
-                <div className="col-md-6">
-                  <div className="form-group m-md-0 mb-4">
+              <div className="row my-30">
+                <div className="col-lg-6">
+                  <div className="form-group m-lg-0 mb-4">
                     <input
                       type="text"
                       placeholder="First Name"
@@ -127,7 +104,7 @@ const Register = (props) => {
                     />
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6 ">
                   <div className="form-group m-0">
                     <input
                       type="text"
@@ -188,7 +165,7 @@ const Register = (props) => {
 
             <div className="form-submit text-center mt-30 mb-3">
               <button
-                className="primary-color border submit"
+                className="primary submit"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Submit"}
