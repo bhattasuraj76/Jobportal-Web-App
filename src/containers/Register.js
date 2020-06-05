@@ -14,6 +14,7 @@ import {
   removeError,
 } from "../utils/Helpers";
 import SignupHeader from "./SignupHeader";
+import Axios from "axios";
 
 const Register = (props) => {
   const [userFirstName, setFirstName] = React.useState("");
@@ -25,41 +26,56 @@ const Register = (props) => {
   const [userEntity, setUserEntity] = React.useState("jobseeker");
   const [loading, setLoading] = React.useState(false);
   const { error, showError } = useErrorHandler(null);
-  const isUserEntityJobseeker = (userEntity === "jobseeker") ? true : false;
+  const isUserEntityJobseeker = userEntity === "jobseeker" ? true : false;
 
   const registerHandler = async () => {
+    setLoading(true);
+    removeError();
+
     try {
-      setLoading(true);
-      removeError();
+      const options = {
+        method: "POST",
+        url: `${apiPath}/userRegister`,
+        data: {
+          first_name: userFirstName,
+          last_name: userLastName,
+          name: compnayName,
+          email: userEmail,
+          password: userPassword,
+          password_confirmation: userConfirmPassword,
+          entity: userEntity,
+        },
+      };
 
-      const data = await apiRequest(apiPath + "/register", "post", {
-        first_name: userFirstName,
-        last_name: userLastName,
-        name: compnayName,
-        email: userEmail,
-        password: userPassword,
-        password_confirmation: userConfirmPassword,
-        entity: userEntity,
-      });
+      const data = await Axios(options);
+      data
+        .then((response) => {
+          if (response.data.resp === 1) {
+            setFirstName("");
+            setLastName("");
+            setCompanyName("");
+            setUserEmail("");
+            setUserPassword("");
+            setConfirmPassword("");
+            alert(response.data.message);
+          } else {
+            showError(response.data.message);
+          }
+        })
+        .catch((err) => {
+          if (err.response) {
+            const { data, status } = err.response;
 
-      console.log(data);
-
-      if (data.resp === 1) {
-        alert("Successfully registered.");
-        setFirstName("");
-        setLastName("");
-        setCompanyName("");
-        setUserEmail("");
-        setUserPassword("");
-        setConfirmPassword("");
-      } else if (data.resp === 0) {
-        showError(data.message);
-      } else {
-        printError(data);
-      }
+            if (status === 422) {
+              alert("Please correct highlighted erros");
+              printError(data);
+            }
+          }
+        });
     } catch (err) {
-      showError(err.message);
+      console.log(err);
     }
+    
     setLoading(false);
   };
 
@@ -98,7 +114,7 @@ const Register = (props) => {
                       type="text"
                       placeholder="First Name"
                       className="form-control p-4"
-                      name="userFirstName"
+                      name="first_name"
                       onChange={(e) => setFirstName(e.target.value)}
                       value={userFirstName}
                     />
@@ -110,7 +126,7 @@ const Register = (props) => {
                       type="text"
                       placeholder="Last Name"
                       className="form-control  p-4"
-                      name="userLastName"
+                      name="last_name"
                       onChange={(e) => setLastName(e.target.value)}
                       value={userLastName}
                     />
@@ -157,17 +173,14 @@ const Register = (props) => {
                 type="password"
                 placeholder="Confirm Password"
                 className="form-control  p-4"
-                name="userConfirmPassword"
+                name="password_confirmation"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={userConfirmPassword}
               />
             </div>
 
             <div className="form-submit text-center mt-30 mb-3">
-              <button
-                className="primary submit"
-                disabled={loading}
-              >
+              <button className="primary submit" disabled={loading}>
                 {loading ? "Loading..." : "Submit"}
               </button>
             </div>

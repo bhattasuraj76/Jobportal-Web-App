@@ -11,10 +11,8 @@ import { AuthContext } from "../contexts/AuthContext";
 /** Utils */
 import { apiRequest, validateLoginForm, printError, removeError } from "../utils/Helpers";
 
-
 const Login = (props) => {
-  const authContext = React.useContext(AuthContext);
-
+  const { setAuthStatus } = React.useContext(AuthContext);
   const [userEmail, setUserEmail] = React.useState("");
   const [userPassword, setUserPassword] = React.useState("");
   const [userEntity, setUserEntity] = React.useState("jobseeker");
@@ -23,32 +21,29 @@ const Login = (props) => {
   const isUserEntityJobseeker = userEntity === "jobseeker" ? true : false;
 
   const authHandler = async () => {
+    setLoading(true);
+    removeError();
 
     try {
-      setLoading(true);
-      removeError();
-
       const data = await apiRequest(apiPath + "/login", "post", {
         email: userEmail,
         password: userPassword,
         entity: userEntity,
       });
-      console.log(data);
 
       if (data.resp === 1) {
         const {email, entity, token } = data.user;
-        authContext.setAuthStatus({email, entity ,token });
+        setAuthStatus({email, entity ,token });
       } else if (data.resp === 0) {
         showError(data.message);
-        setLoading(false);
       }else{
          printError(data);
-         setLoading(false);
       }
     } catch (err) {
-      setLoading(false);
       showError(err.message);
     }
+
+    setLoading(false);
   };
 
   return (

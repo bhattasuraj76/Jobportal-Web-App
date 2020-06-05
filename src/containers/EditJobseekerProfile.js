@@ -134,7 +134,7 @@ class EditJobseekerProfile extends Component {
   };
 
   updateDescription = (value) => {
-    this.setState({ description: value });
+    if(value) this.setState({ description: value });
   };
 
   render() {
@@ -187,21 +187,33 @@ class EditJobseekerProfile extends Component {
                 <label className="radio-wrapper col-3  ml-5  ml-lg-4">
                   <input
                     type="radio"
-                    checked="checked"
                     name="gender"
-                    value="Male"
+                    value="male"
                     onChange={this.onChange}
+                    checked={this.state.gender === "male" ? true : false}
                   />
                   <span className="checkmark"></span>
                   Male
                 </label>
                 <label className="radio-wrapper col-3">
-                  <input type="radio" name="gender" value="Female" />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={this.state.gender === "female" ? true : false}
+                    onChange={this.onChange}
+                  />
                   <span className="checkmark"></span>
                   Female
                 </label>
                 <label className="radio-wrapper col-3">
-                  <input type="radio" name="gender" value="Other" />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    checked={this.state.gender === "other" ? true : false}
+                    onChange={this.onChange}
+                  />
                   <span className="checkmark"></span>
                   Other
                 </label>
@@ -257,10 +269,7 @@ class EditJobseekerProfile extends Component {
           </div>
 
           <div className="form-submit mt-30 mb-3">
-            <button
-              type="submit"
-              className="post-job-btn b-0 px-3 primary"
-            >
+            <button type="submit" className="post-job-btn b-0 px-3 primary">
               Edit profile
             </button>
           </div>

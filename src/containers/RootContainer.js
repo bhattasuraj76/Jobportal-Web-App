@@ -9,10 +9,8 @@ import Register from "./Register";
 import Login from "./Login";
 import Home from "./Home";
 import Employer from "./Employer";
-
 import PrivateRoute from "../hoc/PrivateRoute";
 import { AuthContext } from "../contexts/AuthContext.js";
-
 import axios from "axios";
 import Jobseeker from "./Jobseeker";
 import Search from "./Search";
@@ -23,12 +21,15 @@ import NotFound from "../components/NotFound";
 function RootContainer() {
   // Add a request interceptor if authenticated
   const { auth } = React.useContext(AuthContext);
-  if (!!auth.email && !!auth.token) {
-    axios.interceptors.request.use(function (config) {
-      config.headers.Authorization = auth.token;
-      return config;
-    });
-  }
+  const AUTH_TOKEN = auth.token || null;
+  axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+
+  // if (!!auth.email && !!auth.token) {
+  //   axios.interceptors.request.use(function (config) {
+  //     config.headers.Authorization = auth.token;
+  //     return config;
+  //   });
+  // }
 
   return (
     <Router>

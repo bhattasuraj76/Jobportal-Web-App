@@ -14,7 +14,6 @@ function Navbar({ history, match, location }) {
   const entity = auth.entity;
 
   useEffect(() => {
-    console.log(displayMenu);
     if (displayMenu) {
       setDisplayMenu(false);
     }
@@ -40,7 +39,6 @@ function Navbar({ history, match, location }) {
 
   const { pathname } = location;
   const isAuthRoute = getIsAuthRouteStatus(pathname);
-  console.log(isAuthRoute);
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -50,8 +48,10 @@ function Navbar({ history, match, location }) {
     });
 
     //clear auth user state form cache
-    setUnauthStatus();
-    history.push("/");
+    setUnauthStatus().then(() => {
+        history.push("/");
+    });
+    
   };
 
   return (

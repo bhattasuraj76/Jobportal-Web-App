@@ -28,12 +28,9 @@ export default () => {
           //show success message
           alert("password successfully changed");
           //reset state values
-          Object.keys(this.state).forEach((key) => {
-            this.setState({
-              [key]: "",
-            });
-            
-          });
+          setConfirmPassword("");
+          setOldPassword("");
+          setPassword("");
         } else {
           //show failure message
           alert("Request Failed");
@@ -54,7 +51,7 @@ export default () => {
       <form action="" onSubmit={handleSubmit} id="changePassForm">
         <div className="form-group my-30">
           <input
-            type="text"
+            type="password"
             name="old_password"
             placeholder="Old password"
             className="form-control  p-3"
@@ -65,7 +62,7 @@ export default () => {
 
         <div className="form-group my-30">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="New password"
             className="form-control  p-3"
@@ -76,7 +73,7 @@ export default () => {
 
         <div className="form-group my-30">
           <input
-            type="text"
+            type="password"
             name="password_confirmation"
             placeholder="Confirm Password"
             className="form-control  p-3"
