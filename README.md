@@ -6,9 +6,9 @@ Job portal web application built with [React](https://github.com/facebook/react/
 
 #### Installation
 <ol>
-    <li>git clone https://github.com/maddyhunter76/Jobportal-Mobile-App.git</li>
-    <li>cd jobportal-mobile-app </li>
-    <li> npm start</li>
+    <li>git clone https://github.com/maddyhunter76/Jobportal-Web-App.git</li>
+    <li>cd Jobportal-Web-App </li>
+    <li>npm start</li>
 </ol>
 
 <div style="border-bottom: 1px solid #eaecef"></div>
@@ -22,10 +22,11 @@ Lumen v5.5
 <div style="border-bottom: 1px solid #eaecef"></div>
 
 ##### Some screenshots in desktop view 
-<img src="/assets/home.png" width="200"/>
-<img src="/assets/search.png" width="200"/>
-<img src="/assets/job-detail.png" width="200"/>
-<img src="/assets/jobseeker.png" width="200"/>
-<img src="/assets/employer.png" width="200"/>
-<img src="/assets/register.png" width="200"/>
-
+<div style="display:flex; flex-wrap: wrap; flex-direction: row;">
+<img src="/assets/home.png" width="400" /> 
+<img src="/assets/search.png" width="400"/>
+<img src="/assets/job-detail.png" width="400"/>
+<img src="/assets/register.png" width="400"/>
+<img src="/assets/employer.png" width="400"/>
+<img src="/assets/jobseeker.png" width="400"/>
+</div>
