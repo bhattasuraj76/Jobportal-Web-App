@@ -31,7 +31,7 @@ class Employers extends Component {
   }
 
   //api
-  ///jobseeker/{jobApplicantId}/change-status
+  ////admin/jobseeker/{jobApplicantId}/change-status
 
   render() {
     return (

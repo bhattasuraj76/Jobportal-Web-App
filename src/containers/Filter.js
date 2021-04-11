@@ -3,6 +3,7 @@ import {
   DEFAULT_JOB_LEVELS,
   DEFAULT_JOB_CATEGORIES,
   DEFAULT_JOB_TYPES,
+  DEFAULT_JOB_LOCATIONS,
 } from "../utils/Consts";
 import CheckboxInput from "./CheckboxInput";
 
@@ -57,6 +58,21 @@ export default ({filterJobs}) => {
                   item={item}
                   key={index}
                   name="level[]"
+                  onChange={filterJobs}
+                />
+              ))}
+            </div>
+          </div>
+          <hr />
+
+          <div id="div_id_job_location">
+            <div className="card-title mb-1">Location</div>
+            <div className="card-body p-0">
+              {DEFAULT_JOB_LOCATIONS.map((item, index) => (
+                <CheckboxInput
+                  item={item}
+                  key={index}
+                  name="locations[]"
                   onChange={filterJobs}
                 />
               ))}

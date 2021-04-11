@@ -111,7 +111,7 @@ export default withRouter((props) => {
         onBannerFormSubmit={filterJobs}
       />
       <div className="Container">
-        <form action="" id="searchPageForm">
+        <form id="searchPageForm">
           <div className="row my-5 mx-0">
             <div className="col-lg-4">
               <Filter filterJobs={filterJobs} />
