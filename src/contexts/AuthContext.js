@@ -22,7 +22,7 @@ const AuthProvider = ({
   const { auth, setAuthStatus, setUnauthStatus } = useAuthHandler(
     getStoredUserAuth() // reutrn default auth user value
   );
-  console.log(auth);
+
   return (
     <Provider value={{ auth, setAuthStatus, setUnauthStatus }}>
       {children}

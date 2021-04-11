@@ -15,28 +15,43 @@ const PrivateRoute = (props) => {
 
   switch (props.type) {
     case "guest":
-      if (entity === "employer") {
-        return <Redirect to="/employer" />;
+      if (entity === "admin") {
+        return <Redirect to="/admin" />;
       } else if (entity === "jobseeker") {
         return <Redirect to="/jobseeker" />;
+      } else if (entity === "employer") {
+        return <Redirect to="/employer" />;
       }
       break;
     case "employer":
+      if (entity === "admin") {
+        return <Redirect to="/admin" />;
+      } else if (entity === "jobseeker") {
+        return <Redirect to="/jobseeker" />;
+      } else if (entity === "guest") {
+        return <Redirect to="/login" />;
+      }
+      break;
+    case "jobseeker":
+      if (entity === "admin") {
+        return <Redirect to="/admin" />;
+      }
+      else if (entity === "employer") {
+        return <Redirect to="/jobseeker" />;
+      } else if (entity === "guest") {
+        return <Redirect to="/login" />;
+      }
+      break;
+    case "admin":
       if (entity === "jobseeker") {
         return <Redirect to="/jobseeker" />;
+      } else if (entity === "employer") {
+        return <Redirect to="/employer" />;
       } else if (entity === "guest") {
-        return <Redirect to="/login" />;
+        return <Redirect to="/admin-login" />;
       }
-     break;
-    case "jobseeker":
-      if (entity === "employer") {
-        return <Redirect to="/jobseeker" />;
-      } else if (entity === "guest") {
-        return <Redirect to="/login" />;
-      }
-     break;
-    default:
       break;
+    default:
   }
 
   return <Route {...props} />;

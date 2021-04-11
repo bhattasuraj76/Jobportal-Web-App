@@ -17,6 +17,8 @@ import Search from "./Search";
 import JobPage from "./JobPage";
 import Navbar from "./Navbar";
 import NotFound from "../components/NotFound";
+import Admin from "./Admin";
+import AdminLogin from "./AdminLogin";
 
 function RootContainer() {
   // Add a request interceptor if authenticated
@@ -62,6 +64,8 @@ function RootContainer() {
 
           <PrivateRoute path="/login" component={Login} type="guest" exact />
 
+          <PrivateRoute path="/admin-login" component={AdminLogin} type="guest" exact />
+
           <PrivateRoute path="/employer" component={Employer} type="employer" />
 
           <PrivateRoute
@@ -69,6 +73,8 @@ function RootContainer() {
             component={Jobseeker}
             type="jobseeker"
           />
+
+          <PrivateRoute path="/admin" component={Admin} type="admin" />
 
           <Route path="*" component={NotFound} />
         </Switch>
