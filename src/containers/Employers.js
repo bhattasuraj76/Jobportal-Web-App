@@ -30,8 +30,29 @@ class Employers extends Component {
     }
   }
 
-  //api
-  ////admin/jobseeker/{jobApplicantId}/change-status
+  handleSatusChange(employer) {
+    axios
+      .post(`${apiPath}/admin/employer/${employer.id}/change-status`)
+      .then((response) => {
+        if (response.data.resp === 1) {
+          let tempEmployers = this.state.employers.map((item) => {
+            return item.id === employer.id
+              ? {
+                  ...item,
+                  status: item.status === "active" ? "suspended" : "active",
+                }
+              : item;
+          });
+          this.setState({
+            employers: tempEmployers,
+            isLoading: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
@@ -65,7 +86,7 @@ class Employers extends Component {
                             className="btn btn-info btn-md"
                             data-toggle="tooltip"
                             title="Click to Suspend"
-                            onClick={() => console.log("Suspend")}
+                            onClick={() => this.handleSatusChange(item)}
                           >
                             Active
                           </button>
@@ -74,7 +95,7 @@ class Employers extends Component {
                             className="btn btn-warning btn-md"
                             data-toggle="tooltip"
                             title="Click to Active"
-                            onClick={() => console.log("Active")}
+                            onClick={() => this.handleSatusChange(item)}
                           >
                             Suspended
                           </button>

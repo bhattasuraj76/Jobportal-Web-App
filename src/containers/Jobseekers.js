@@ -30,8 +30,29 @@ class Jobseekers extends Component {
     }
   }
 
-  //api
-  //admin/jobseeker/{jobApplicantId}/change-status
+  handleSatusChange(jobseeker) {
+    axios
+      .post(`${apiPath}/admin/jobseeker/${jobseeker.id}/change-status`)
+      .then((response) => {
+        if (response.data.resp === 1) {
+          let tempJobseekers = this.state.jobseekers.map((item) => {
+            return item.id === jobseeker.id
+              ? {
+                  ...item,
+                  status: item.status === "active" ? "suspended" : "active",
+                }
+              : item;
+          });
+          this.setState({
+            jobseekers: tempJobseekers,
+            isLoading: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
@@ -65,7 +86,7 @@ class Jobseekers extends Component {
                             className="btn btn-info btn-md"
                             data-toggle="tooltip"
                             title="Click to Suspend"
-                            onClick={() => console.log("Suspend")}
+                            onClick={() => this.handleSatusChange(item)}
                           >
                             Active
                           </button>
@@ -74,7 +95,7 @@ class Jobseekers extends Component {
                             className="btn btn-warning btn-md"
                             data-toggle="tooltip"
                             title="Click to Active"
-                            onClick={() => console.log("Active")}
+                            onClick={() => this.handleSatusChange(item)}
                           >
                             Suspended
                           </button>

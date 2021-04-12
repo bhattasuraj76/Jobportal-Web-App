@@ -72,7 +72,7 @@ export default ({filterJobs}) => {
                 <CheckboxInput
                   item={item}
                   key={index}
-                  name="locations[]"
+                  name="location[]"
                   onChange={filterJobs}
                 />
               ))}
