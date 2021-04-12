@@ -26,31 +26,25 @@ const AdminLogin = (props) => {
     setLoading(true);
     removeError();
 
-   setAuthStatus({
-     email: "admin@test.com",
-     password: "admin",
-     entity: "admin",
-   });
-
-    // try {
-    //   const data = await apiRequest(apiPath + "/login", "post", {
-    //     email: "admin@test.com",
-    //     password: "admin",
-    //     entity: "admin",
-    //   });
+    try {
+      const data = await apiRequest(apiPath + "/login", "post", {
+        email: userEmail,
+        password: userPassword,
+        entity: "admin",
+      });
 
 
-    //   if (data.resp === 1) {
-    //     const { email, entity, token } = data.user;
-    //     setAuthStatus({ email, entity, token });
-    //   } else if (data.resp === 0) {
-    //     showError(data.message);
-    //   } else {
-    //     printError(data);
-    //   }
-    // } catch (err) {
-    //   showError(err.message);
-    // }
+      if (data.resp === 1) {
+        const { email, entity, token } = data.user;
+        setAuthStatus({ email, entity, token });
+      } else if (data.resp === 0) {
+        showError(data.message);
+      } else {
+        printError(data);
+      }
+    } catch (err) {
+      showError(err.message);
+    }
 
     setLoading(false);
   };
