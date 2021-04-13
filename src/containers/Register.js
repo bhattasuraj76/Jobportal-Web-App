@@ -14,7 +14,7 @@ import {
   removeError,
 } from "../utils/Helpers";
 import SignupHeader from "./SignupHeader";
-import Axios from "axios";
+import axios from "axios";
 
 const Register = (props) => {
   const [userFirstName, setFirstName] = React.useState("");
@@ -33,22 +33,20 @@ const Register = (props) => {
     removeError();
 
     try {
-      const options = {
-        method: "POST",
-        url: `${apiPath}/userRegister`,
-        data: {
-          first_name: userFirstName,
-          last_name: userLastName,
-          name: compnayName,
-          email: userEmail,
-          password: userPassword,
-          password_confirmation: userConfirmPassword,
-          entity: userEntity,
-        },
+      const url = `${apiPath}/userRegister`;
+
+      const data = {
+        first_name: userFirstName,
+        last_name: userLastName,
+        name: compnayName,
+        email: userEmail,
+        password: userPassword,
+        password_confirmation: userConfirmPassword,
+        entity: userEntity,
       };
 
-      const data = await Axios(options);
-      data
+      axios
+        .post(url, data)
         .then((response) => {
           if (response.data.resp === 1) {
             setFirstName("");
@@ -75,7 +73,7 @@ const Register = (props) => {
     } catch (err) {
       console.log(err);
     }
-    
+
     setLoading(false);
   };
 

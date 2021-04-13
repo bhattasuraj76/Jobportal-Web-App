@@ -155,7 +155,7 @@ class JobPage extends Component {
                   ></div>
                 </div>
                 <div className="job-apply-btn">
-                  {!(auth.entity === "employer") && (
+                  {(auth.entity === "jobseeker") && (
                     <button
                       type="submit"
                       className="post-job-btn b-0 px-3 primary"
