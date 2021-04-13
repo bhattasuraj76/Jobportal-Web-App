@@ -141,6 +141,9 @@ class JobPage extends Component {
                       Salary: <span>{job.salary}</span>
                     </li>
                     <li>
+                      Location: <span>{job.location}</span>
+                    </li>
+                    <li>
                       Deadline: <span>{job.deadline}</span>
                     </li>
                   </ul>

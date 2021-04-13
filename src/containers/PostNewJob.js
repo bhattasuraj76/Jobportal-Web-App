@@ -6,6 +6,7 @@ import {
   DEFAULT_JOB_CATEGORIES,
   DEFAULT_JOB_TYPES,
   apiPath,
+  DEFAULT_JOB_LOCATIONS,
 } from "../utils/Consts";
 import { printError, removeError } from "../utils/Helpers";
 import { validatePostNewJob } from "../utils/Helpers";
@@ -20,6 +21,7 @@ class PostNewJob extends Component {
       type: null,
       level: null,
       title: null,
+      location: null,
       experience: null,
       qualification: null,
       description: null,
@@ -118,7 +120,7 @@ class PostNewJob extends Component {
                 <option value="">Select Job Category</option>
 
                 {DEFAULT_JOB_CATEGORIES.map((item, index) => (
-                  <option name="level[]" value={item.value} key={index}>
+                  <option value={item.value} key={index}>
                     {item.title}
                   </option>
                 ))}
@@ -134,7 +136,7 @@ class PostNewJob extends Component {
                 <option value="">Select Job Type</option>
 
                 {DEFAULT_JOB_TYPES.map((item, index) => (
-                  <option name="level[]" value={item.value} key={index}>
+                  <option value={item.value} key={index}>
                     {item.title}
                   </option>
                 ))}
@@ -150,7 +152,23 @@ class PostNewJob extends Component {
                 <option value="">Select Job Level</option>
 
                 {DEFAULT_JOB_LEVELS.map((item, index) => (
-                  <option name="level[]" value={item.value} key={index}>
+                  <option value={item.value} key={index}>
+                    {item.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group my-30">
+              <select
+                className="form-control"
+                name="location"
+                onChange={this.onChange}
+              >
+                <option value="">Select Location</option>
+
+                {DEFAULT_JOB_LOCATIONS.map((item, index) => (
+                  <option value={item.value} key={index}>
                     {item.title}
                   </option>
                 ))}
@@ -224,10 +242,7 @@ class PostNewJob extends Component {
             </div>
 
             <div className="form-group">
-              <button
-                type="submit"
-                className="post-job-btn b-0 px-3 primary"
-              >
+              <button type="submit" className="post-job-btn b-0 px-3 primary">
                 Post job
               </button>
             </div>
