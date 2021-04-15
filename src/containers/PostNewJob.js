@@ -12,6 +12,8 @@ import { printError, removeError } from "../utils/Helpers";
 import { validatePostNewJob } from "../utils/Helpers";
 import ErrorMessage from "../components/ErrorMessage";
 import moment from "moment";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class PostNewJob extends Component {
   constructor(props) {
@@ -29,7 +31,6 @@ class PostNewJob extends Component {
       expiry_date: null,
       error: null,
     };
-    console.log(moment());
   }
 
   setError = (message) => {
@@ -91,6 +92,7 @@ class PostNewJob extends Component {
     this.setState({ description: value });
   };
 
+  
   render() {
     return (
       <div
@@ -223,21 +225,29 @@ class PostNewJob extends Component {
 
             <div className="form-group my-30">
               <input
-                type="text"
+                type="number"
                 name="salary"
-                placeholder="Salary (NPR) e.g Rs 20000-Rs 40,000"
+                placeholder="Salary (NPR) e.g 40000"
                 className="form-control p-3"
                 onChange={this.onChange}
+                min="1"
               />
             </div>
 
             <div className="form-group my-30">
-              <input
-                type="text"
+              {/* <input
+                type="date"
                 name="expiry_date"
                 placeholder="Expiry date (Y-m-d) e.g 2020-12-12"
                 className="form-control p-3"
                 onChange={this.onChange}
+              /> */}
+
+              <DatePicker
+                selected={this.state.expiry_date}
+                onChange={(date) => this.setState({ expiry_date: date })}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Expiry date "
               />
             </div>
 

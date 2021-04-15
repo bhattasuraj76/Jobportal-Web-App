@@ -23,7 +23,6 @@ export default withRouter((props) => {
   React.useEffect(() => {
     const values = queryString.parse(props.location.search);
     let keyword = values.keyword || " ";
-    setKeyword(keyword);
 
     ajaxFetchJobs({ keyword });
   }, []);
@@ -46,17 +45,11 @@ export default withRouter((props) => {
 
   //update state values
   const handleSuccess = (jobs) => {
-    console.log(jobs);
     setJobs(jobs.data);
     setJobsCount(jobs.total);
     setIsLoading(false);
     //for pagination
     setPageCount(Number(jobs.last_page));
-  };
-
-  //trace keyword value
-  const onChangeKeyword = (e) => {
-    setKeyword(e.target.value);
   };
 
   //reset form handler
@@ -67,18 +60,21 @@ export default withRouter((props) => {
   };
 
   //search based on filter form params & search keyword val
-  const filterJobs = () => {
+  const filterJobs = async () => {
     setIsLoading(true);
     let formData = new FormData(document.getElementById("searchPageForm"));
-    formData.append("keyword", keyword);
 
-    ajaxFetchJobs(formData);
+    await ajaxFetchJobs(formData);
+    await sleep(2000);
     setIsLoading(false);
+  };
+
+  const sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
 
   //pagination events & function
   const handlePageClick = (data) => {
-    console.log(data);
     const selectedPage = data.selected >= 0 ? data.selected + 1 : 0;
     setCurrentPage(selectedPage);
     getCurrentPageJobs(selectedPage);
@@ -86,7 +82,6 @@ export default withRouter((props) => {
 
   //handle current page change event of pagination
   const getCurrentPageJobs = async (pageNo) => {
-    console.log(pageNo);
     const newUrl = `${apiPath}/search?page=${pageNo}`;
     const response = await axios.post(newUrl);
     try {
@@ -105,16 +100,12 @@ export default withRouter((props) => {
 
   return (
     <div className="search-page">
-      <BannerSearch
-        keyword={keyword}
-        onChangeKeyword={onChangeKeyword}
-        onBannerFormSubmit={filterJobs}
-      />
+      <BannerSearch />
       <div className="Container">
         <form id="searchPageForm">
           <div className="row my-5 mx-0">
             <div className="col-lg-4">
-              <Filter filterJobs={filterJobs} />
+              <Filter filterJobs={filterJobs} {...props} />
             </div>
             <div className="col-lg-8">
               <div className="search-results">

@@ -4,19 +4,22 @@ import HotJobs from "./HotJobs";
 import Banner from "./Banner";
 import axios from "axios";
 import { withRouter } from "react-router";
+import RecentJobs from "./RecentJobs";
+import ExpiringJobs from "./ExpiringJobs";
 
 const Home = (props) => {
-  const [jobs, setJobs] = React.useState([]);
+  const [recentJobs, setRecentJobs] = React.useState([]);
+  const [hotJobs, setHotJobs] = React.useState([]);
+  const [expiringJobs, setExpiringJobs] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [keyword, setKeyword] = React.useState("");
 
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
   };
-  
+
   const onBannerFormSubmit = () => {
-    console.log("fas");
-    props.history.push('/search?keyword='+keyword);
+    props.history.push("/search?keyword=" + keyword);
   };
 
   React.useEffect(() => {
@@ -24,8 +27,9 @@ const Home = (props) => {
       .get(apiPath + "/home")
       .then((response) => {
         if (response.data.resp === 1) {
-          console.log(response);
-          setJobs(response.data.hot_jobs);
+          setHotJobs(response.data.hot_jobs || []);
+          setRecentJobs(response.data.recent_jobs || []);
+          setExpiringJobs(response.data.expiring_jobs || []);
           setLoading(false);
         }
       })
@@ -43,7 +47,11 @@ const Home = (props) => {
       />
 
       {!loading ? (
-        <HotJobs jobs={jobs} />
+        <>
+          <HotJobs jobs={hotJobs} />
+          <RecentJobs jobs={recentJobs} />
+          <ExpiringJobs jobs={expiringJobs} />
+        </>
       ) : (
         <div className="text-center  mt-5">
           <div className="spinner-grow" role="status">
@@ -55,6 +63,5 @@ const Home = (props) => {
     </div>
   );
 };
-
 
 export default withRouter(Home);

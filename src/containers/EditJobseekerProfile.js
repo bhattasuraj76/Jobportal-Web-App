@@ -236,7 +236,7 @@ class EditJobseekerProfile extends Component {
             <Editor
               placeholder="Write about yourself ....."
               handleChange={this.updateDescription || ""}
-              editorHtml={this.state.description}
+              editorHtml={this.state.description || ""}
             />
           </div>
 

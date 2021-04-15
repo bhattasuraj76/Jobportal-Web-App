@@ -40,6 +40,7 @@ class Jobseekers extends Component {
               ? {
                   ...item,
                   status: item.status === "active" ? "suspended" : "active",
+                  request_to_activate: false,
                 }
               : item;
           });
@@ -91,14 +92,22 @@ class Jobseekers extends Component {
                             Active
                           </button>
                         ) : (
-                          <button
-                            className="btn btn-warning btn-md"
-                            data-toggle="tooltip"
-                            title="Click to Active"
-                            onClick={() => this.handleSatusChange(item)}
-                          >
-                            Suspended
-                          </button>
+                          <>
+                            <button
+                              className="btn btn-warning btn-md"
+                              data-toggle="tooltip"
+                              title="Click to Active"
+                              onClick={() => this.handleSatusChange(item)}
+                            >
+                              Suspended
+                            </button>
+                            <br />
+                            {item.request_to_activate ? (
+                              <p className="text-info">
+                                User has requested to activate his/her account.
+                              </p>
+                            ): null}
+                          </>
                         )}
                       </td>
                     </tr>

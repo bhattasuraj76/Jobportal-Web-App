@@ -18,6 +18,8 @@ class JobPage extends Component {
         email: "xyz@abcemployer.com",
       },
       isLoading: true,
+      hasAppliedForJob: false,
+      isAccountDeactivated: false,
     };
   }
 
@@ -33,30 +35,54 @@ class JobPage extends Component {
 
     const { pathname } = this.props.location;
     const currentParams = getParams(pathname);
-    console.log(currentParams);
 
-    if (this.state.isLoading) {
-      axios
-        .get(`${apiPath}/job/${currentParams.slug}`)
-        .then((response) => {
-          if (response.data.resp === 1) {
-            console.log(response);
-            this.setState({
-              job: response.data.job,
-              employer: response.data.job.employer,
-              isLoading: false,
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    axios
+      .get(`${apiPath}/job/${currentParams.slug}`)
+      .then((response) => {
+        if (response.data.resp === 1) {
+          this.setState({
+            job: response.data.job,
+            employer: response.data.job.employer,
+            isLoading: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .post(
+        `${apiPath}/check-if-jobseeker-applied-for-job/${currentParams.slug}`
+      )
+      .then((response) => {
+        if (response.data.resp === 1) {
+          this.setState({
+            hasAppliedForJob: true,
+            isLoading: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .post(apiPath + "/check-if-jobseeker-account-is-suspended")
+      .then((response) => {
+        if (response.data.resp === 1) {
+          this.setState({
+            isAccountDeactivated: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   applyForJob = () => {
     const { auth } = this.context;
-    console.log(auth.entity);
     const isAuthenticated = auth.email ? true : false;
 
     if (!isAuthenticated) {
@@ -70,6 +96,7 @@ class JobPage extends Component {
         })
         .then((response) => {
           if (response.data.resp === 1) {
+            this.setState({ hasAppliedForJob: true });
             //show success message
             alert("Successfuly applied for job");
           } else if (response.data.resp === 0) {
@@ -100,16 +127,16 @@ class JobPage extends Component {
                   <h5 className="mb-3 mr-5">Company Details</h5>
                   <ul>
                     <li>
-                      Name: <span>{employer.address}</span>
+                      Name: <span>{employer.name}</span>
                     </li>
                     <li>
-                      Address: <span>{employer.address}</span>
+                      Address: <span>{employer.address || "N/A"}</span>
                     </li>
                     <li>
                       Email: <span>{employer.email}</span>
                     </li>
                     <li>
-                      Phone: <span>{employer.phone}</span>
+                      Phone: <span>{employer.phone || "N/A"}</span>
                     </li>
                   </ul>
                 </div>
@@ -155,14 +182,30 @@ class JobPage extends Component {
                   ></div>
                 </div>
                 <div className="job-apply-btn">
-                  {(auth.entity === "jobseeker") && (
-                    <button
-                      type="submit"
-                      className="post-job-btn b-0 px-3 primary"
-                      onClick={this.applyForJob}
-                    >
-                      Apply for Job
-                    </button>
+                  {(auth.entity === "jobseeker" || auth.entity === "guest") && (
+                    <>
+                      {!this.state.hasAppliedForJob &&
+                        !this.state.isAccountDeactivated && (
+                          <button
+                            type="submit"
+                            className="post-job-btn b-0 px-3 primary"
+                            onClick={this.applyForJob}
+                          >
+                            Apply for Job
+                          </button>
+                        )}
+                      {this.state.isAccountDeactivated && (
+                        <p className="text-warning">
+                          Your account is deactivated. You cannot apply for any
+                          job.
+                        </p>
+                      )}
+                      {this.state.hasAppliedForJob && (
+                        <p className="text-warning">
+                          You have already applied for this job
+                        </p>
+                      )}
+                    </>
                   )}
                 </div>
               </div>

@@ -4,6 +4,7 @@ import SingleJob from "./ViewSingleJob";
 import { confirmDelete } from "../utils/Helpers";
 import { apiPath } from "../utils/Consts";
 import Loader from "./Loader";
+import EditSingleJob from "./EditSingleJob";
 
 class ViewJobPosted extends Component {
   constructor(props) {
@@ -38,18 +39,15 @@ class ViewJobPosted extends Component {
     axios
       .delete(`${apiPath}/employer/delete-job/${id}`)
       .then((response) => {
-        console.log(response);
         if (response.data.resp === 1) {
-          //throw alert
-          alert("Successfully Deleted");
           //update state
           let jobs = this.state.jobs.filter((item) => item.id !== id);
 
-          console.log(jobs);
           this.setState({
             jobs: jobs,
           });
-          console.log(this.state);
+          //throw alert
+          alert("Successfully Deleted");
         }
       })
       .catch((error) => {
@@ -57,6 +55,10 @@ class ViewJobPosted extends Component {
       });
     }
 
+  }
+
+  updateJobs = jobs => {
+    this.setState({jobs});
   }
 
   render() {
@@ -88,11 +90,15 @@ class ViewJobPosted extends Component {
                       <th>{index}</th>
                       <td>{item.title}</td>
                       <td>{item.category}</td>
-                      <td>
-                       {item.expiry_date}
-                      </td>
+                      <td>{item.expiry_date}</td>
                       <td>
                         <SingleJob divId={`singlejob${index}`} job={item} />
+                        {"  "}
+                        <EditSingleJob
+                          divId={`editsinglejob${index}`}
+                          job={item}
+                          updateJobs={this.updateJobs}
+                        />
                         {"  "}
                         <a
                           href="#deletejob"

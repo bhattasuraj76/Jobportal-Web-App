@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SingleJob from "./ViewSingleJob";
-
 class ViewAppliedJobs extends Component {
   render() {
     return (
@@ -29,6 +28,18 @@ class ViewAppliedJobs extends Component {
                     <td>{item.expiry_date}</td>
                     <td>
                       <SingleJob divId={`singlejob${index}`} job={item} />
+                      <a
+                        href="#deletejob"
+                        className="btn btn-danger btn-xs"
+                        data-toggle="tooltip"
+                        title="Remove Job"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          this.props.deleteJob(item.id);
+                        }}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </a>
                     </td>
                   </tr>
                 );

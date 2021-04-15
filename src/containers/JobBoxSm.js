@@ -2,7 +2,7 @@ import * as React from "react";
 import CompnayLogo from "../images/company-logo.png";
 import { Link } from "react-router-dom";
 
-export default ({ job, classValue }) => {
+export default ({ job, classValue, type }) => {
   return (
     <div className={classValue}>
       <div className="job-box d-flex align-items-center">
@@ -22,7 +22,11 @@ export default ({ job, classValue }) => {
               </Link>
             </li>
             <li>
-              <small>Deadline: {job.deadline} </small>
+              {type === "recent" ? (
+                <small>Posted: {job.posted_time} </small>
+              ) : (
+                <small>Deadline: {job.deadline} </small>
+              )}
             </li>
           </ul>
         </div>

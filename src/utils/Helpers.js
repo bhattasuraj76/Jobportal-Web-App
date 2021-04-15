@@ -65,6 +65,11 @@ export const validateRegisterForm = (
     return false;
   }
 
+  if (password  && password.length < 6) {
+    setError("Password must be at least 6 characters");
+    return false;
+  }
+
   if (!confirmPassword) {
     setError("Password confirmation field is required");
     return false;
@@ -88,6 +93,16 @@ export const validatePostNewJob = (fileds, setError) => {
 
   if (!fileds.category) {
     setError("Category is required");
+    return false;
+  }
+
+  if (!fileds.type) {
+    setError("Job Type is required");
+    return false;
+  }
+
+  if (!fileds.level) {
+    setError("Job Level is required");
     return false;
   }
 

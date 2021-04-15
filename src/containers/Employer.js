@@ -10,6 +10,7 @@ import ChangePassword from "./ChangePassword";
 
 import axios from "axios";
 import BannerEmployer from "./BannerEmployer";
+import ViewEmployerProfile from "./ViewEmployerProfile";
 
 class Employer extends Component {
   state = {
@@ -61,6 +62,11 @@ class Employer extends Component {
                     </NavLink>
                   </div>
                   <div className="jobseeker-nav-pill">
+                    <NavLink to={`${this.props.match.url}/view-profile`}>
+                      View Profile
+                    </NavLink>
+                  </div>
+                  <div className="jobseeker-nav-pill">
                     <NavLink to={`${this.props.match.url}/edit-profile`}>
                       Edit profile
                     </NavLink>
@@ -90,6 +96,9 @@ class Employer extends Component {
                       totalJobsPosted={this.state.total_jobs_posted}
                       fetchData={this.fetchData}
                     />
+                  </Route>
+                  <Route path={`${this.props.match.path}/view-profile`}>
+                    <ViewEmployerProfile />
                   </Route>
                   <Route path={`${this.props.match.path}/edit-profile`}>
                     <EditEmployerProfile

@@ -80,4 +80,23 @@ export const DEFAULT_JOB_LOCATIONS = [
   },
 ];
 
+export const DEFAULT_SALARY_RANGES = [
+  {
+    title: "Below Rs. 30,000",
+    value: "0-30000",
+  },
+  {
+    title: "Rs. 30,000 to Rs.50,000",
+    value: "30000-50000",
+  },
+  {
+    title: "Rs. 50,000 to Rs.70,000",
+    value: "50000-70000",
+  },
+  {
+    title: "Above Rs.70,000",
+    value: "70000-",
+  },
+];
+
 export const apiPath = process.env.REACT_APP_API_URL;
