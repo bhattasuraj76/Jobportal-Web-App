@@ -50,6 +50,7 @@ class PostNewJob extends Component {
     axios
       .post(apiPath + "/employer/post-new-job", {
         ...this.state,
+        expiry_date: moment(this.state.expiry_date).format("YYYY-MM-DD"),
       })
       .then((response) => {
         if (response.data.resp === 1) {
@@ -248,6 +249,7 @@ class PostNewJob extends Component {
                 onChange={(date) => this.setState({ expiry_date: date })}
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Expiry date "
+                minDate={moment().toDate()}
               />
             </div>
 

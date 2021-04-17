@@ -13,6 +13,7 @@ import Editor from "../widgets/Editor";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
 
 class EditSingleJob extends Component {
   constructor(props) {
@@ -55,13 +56,14 @@ class EditSingleJob extends Component {
     axios
       .post(apiPath + "/employer/update-job/" + this.state.id, {
         ...this.state,
+        expiry_date: moment(this.state.expiry_date).format("YYYY-MM-DD"),
       })
       .then((response) => {
         if (response.data.resp === 1) {
           this.props.updateJobs(response.data.jobs);
           //show success message
           alert("Successfuly updated job");
-            this.setState({isModalOpen: false})
+          this.setState({ isModalOpen: false });
         } else {
           alert("Request Failed");
         }
@@ -291,10 +293,11 @@ class EditSingleJob extends Component {
                   /> */}
 
                   <DatePicker
-                    selected={new Date(expiry_date )|| null}
+                    selected={new Date(expiry_date) || null}
                     onChange={(date) => this.setState({ expiry_date: date })}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Expiry date "
+                    minDate={moment().toDate()}
                   />
                 </div>
 
