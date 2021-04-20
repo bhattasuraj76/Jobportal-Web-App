@@ -74,6 +74,7 @@ const AdminLogin = (props) => {
                 name="email"
                 onChange={(e) => setUserEmail(e.target.value)}
                 value={userEmail}
+                required
               />
             </div>
             <div className="form-group my-30">
@@ -84,6 +85,7 @@ const AdminLogin = (props) => {
                 name="password"
                 onChange={(e) => setUserPassword(e.target.value)}
                 value={userPassword}
+                required
               />
             </div>
 
