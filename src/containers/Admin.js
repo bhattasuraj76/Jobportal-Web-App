@@ -11,6 +11,8 @@ class Employer extends Component {
   state = {
     total_jobseekers: 0,
     total_employers: 0,
+    req_activate_jobseekers: 0,
+    req_activate_employers: 0,
   };
 
   componentDidMount() {
@@ -63,6 +65,12 @@ class Employer extends Component {
                     <AdminLanding
                       totalEmployers={this.state.total_jobseekers}
                       totalJobseekers={this.state.total_employers}
+                      requestActivateEmployers={
+                        this.state.req_activate_employers
+                      }
+                      requestActivateJobseekers={
+                        this.state.req_activate_jobseekers
+                      }
                       fetchData={this.fetchData}
                     />
                   </Route>

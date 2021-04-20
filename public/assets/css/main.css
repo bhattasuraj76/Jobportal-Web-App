@@ -193,9 +193,9 @@ h5 {
 }
 
 .top-sticky {
- position: sticky;
- z-index: 99;
- top: 0;
+    position: sticky;
+    z-index: 99;
+    top: 0;
 }
 
 /* navbar styles */
@@ -915,7 +915,7 @@ h5 {
     box-shadow: 4px 4px 9px var(--shadow);
 }
 
-.hot-jobs-container .job-box  img {
+.hot-jobs-container .job-box img {
     height: 85px;
     width: 85px;
 }
@@ -1246,30 +1246,34 @@ h5 {
         margin-top: 50px;
     }
 
-    .Navbar .row > div {
-        padding: 0!important;
+    .Navbar .row>div {
+        padding: 0 !important;
     }
 
 }
 
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
-    display: block!important;
+    display: block !important;
 }
 
-.react-datepicker__input-container > input {
-      display: block;
-      width: 100%;
-      height: calc(1.5em + .75rem + 2px);
-      padding: .375rem .75rem;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: .25rem;
-      transition: border-color .15s ease-in-out,
-      box-shadow .15s ease-in-out;
+.react-datepicker__input-container>input {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out;
+}
+
+.activation-count:hover {
+    text-decoration: none !important;
 }
