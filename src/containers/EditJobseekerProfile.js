@@ -50,8 +50,6 @@ class EditJobseekerProfile extends Component {
       .value;
     formData.append("gender", genderValue);
 
-    console.log(genderValue);
-
     axios
       .post(apiPath + "/jobseeker/edit-profile", formData, {
         headers: {
@@ -138,6 +136,8 @@ class EditJobseekerProfile extends Component {
   };
 
   render() {
+    let gender = this.state.gender || "male";
+
     return (
       <div
         className="job-applied-wrapper table-responsive-md edit-profile-form-wrap container"
@@ -190,7 +190,7 @@ class EditJobseekerProfile extends Component {
                     name="gender"
                     value="male"
                     onChange={this.onChange}
-                    checked={this.state.gender === "male" ? true : false}
+                    checked={gender === "male" ? true : false}
                   />
                   <span className="checkmark"></span>
                   Male
@@ -200,7 +200,7 @@ class EditJobseekerProfile extends Component {
                     type="radio"
                     name="gender"
                     value="female"
-                    checked={this.state.gender === "female" ? true : false}
+                    checked={gender === "female" ? true : false}
                     onChange={this.onChange}
                   />
                   <span className="checkmark"></span>
@@ -211,7 +211,7 @@ class EditJobseekerProfile extends Component {
                     type="radio"
                     name="gender"
                     value="other"
-                    checked={this.state.gender === "other" ? true : false}
+                    checked={gender === "other" ? true : false}
                     onChange={this.onChange}
                   />
                   <span className="checkmark"></span>

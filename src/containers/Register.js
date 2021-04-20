@@ -115,6 +115,7 @@ const Register = (props) => {
                       name="first_name"
                       onChange={(e) => setFirstName(e.target.value)}
                       value={userFirstName}
+                      required
                     />
                   </div>
                 </div>
@@ -127,6 +128,7 @@ const Register = (props) => {
                       name="last_name"
                       onChange={(e) => setLastName(e.target.value)}
                       value={userLastName}
+                      required
                     />
                   </div>
                 </div>
@@ -140,6 +142,7 @@ const Register = (props) => {
                   className="form-control p-4"
                   onChange={(e) => setCompanyName(e.target.value)}
                   value={compnayName}
+                  required
                 />
               </div>
             )}
@@ -152,6 +155,7 @@ const Register = (props) => {
                 className="form-control p-4"
                 onChange={(e) => setUserEmail(e.target.value)}
                 value={userEmail}
+                required
               />
             </div>
 
@@ -163,6 +167,7 @@ const Register = (props) => {
                 name="password"
                 onChange={(e) => setUserPassword(e.target.value)}
                 value={userPassword}
+                required
               />
             </div>
 
@@ -174,6 +179,7 @@ const Register = (props) => {
                 name="password_confirmation"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={userConfirmPassword}
+                required
               />
             </div>
 

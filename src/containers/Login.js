@@ -74,6 +74,7 @@ const Login = (props) => {
                 name="email"
                 onChange={(e) => setUserEmail(e.target.value)}
                 value={userEmail}
+                required
               />
             </div>
             <div className="form-group my-30">
@@ -84,14 +85,12 @@ const Login = (props) => {
                 name="password"
                 onChange={(e) => setUserPassword(e.target.value)}
                 value={userPassword}
+                required
               />
             </div>
 
             <div className="form-submit text-center mt-30 mb-3">
-              <button
-                className="primary submit"
-                disabled={loading}
-              >
+              <button className="primary submit" disabled={loading}>
                 {loading ? "Loading..." : "Submit"}
               </button>
             </div>
